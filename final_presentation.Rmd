@@ -1,0 +1,138 @@
+---
+title: "Final Project"
+author: "Ryan DiCanio"
+date: "December 5, 2017"
+output: ioslides_presentation
+---
+
+dh formula: (40)WOBA + (40)OPS + (10)SLG + (10)AVG
+
+reg formula: (40)WOBA + (40)OPS + (10)AVG + (10)FLD
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+dhdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/dhdata.xlsx")
+X1Bdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/1Bdata.xlsx")
+LFdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/LFdata.xlsx")
+X2000_mvp_data <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/X2000_mvp_data.xlsx")
+```
+
+
+## R Markdown
+
+```{r}
+
+dhdata %>%  top_n(10, wt = desc(`Total R`) )%>%
+ggplot()+ geom_point(mapping = aes(x=Name, y=`Total R`),size=4)
+
+
+```
+```{r}
+dhdata %>%  top_n(10, wt = desc(`Total R`) )%>%
+ggplot()+ geom_point(mapping = aes(x=OPS, y=`Total R`,color=Name),size=4)
+model <- dhdata %>%  top_n(10, wt = desc(`Total R`) )%>% lm(`Total R` ~ OPS, data=.)
+summary(model)
+```
+
+```{r}
+dhdata %>%  top_n(10, wt = desc(`Total R`) )%>%
+ggplot()+ geom_point(mapping = aes(x=SLG, y=`Total R`,color=Name),size=4)
+model <- dhdata %>%  top_n(10, wt = desc(`Total R`) )%>% lm(`Total R` ~ SLG, data=.)
+summary(model)
+```
+
+```{r}
+dhdata %>%  top_n(10, wt = desc(`Total R`) )%>%
+ggplot()+ geom_point(mapping = aes(x=AVG, y=`Total R`,color=Name),size=4)
+model <- dhdata %>%  top_n(10, wt = desc(`Total R`) )%>% lm(`Total R` ~ AVG, data=.)
+summary(model)
+```
+
+```{r}
+dhdata %>%  top_n(10, wt = desc(`Total R`) )%>%
+ggplot()+ geom_point(mapping = aes(x=wOBA, y=`Total R`,color=Name),size=4)
+model <- dhdata %>%  top_n(10, wt = desc(`Total R`) )%>% lm(`Total R` ~ wOBA, data=.)
+summary(model)
+```
+
+```{r}
+X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=wOBA, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ wOBA, data=.)
+summary(model)
+```
+
+```{r}
+X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=AVG, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ AVG, data=.)
+summary(model)
+```
+
+```{r}
+X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=Def, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ Def, data=.)
+summary(model)
+```
+
+```{r}
+X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot()+ geom_point(mapping = aes(x=Name, y=`Total Rank`),size=4)
+```
+
+```{r}
+X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=OPS, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- X1Bdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ OPS, data=.)
+summary(model)
+```
+
+```{r}
+LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot()+ geom_point(mapping = aes(x=Name, y=`Total Rank`),size=4)
+```
+
+```{r}
+LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=wOBA, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ wOBA, data=.)
+summary(model)
+```
+
+```{r}
+LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=AVG, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ AVG, data=.)
+summary(model)
+```
+
+```{r}
+LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=Def, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ Def, data=.)
+summary(model)
+```
+
+```{r}
+LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>%
+ggplot(mapping = aes(x=OPS, y=`Total Rank`,fill=Name,label=Season))+geom_label()
+model <- LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ OPS, data=.)
+summary(model)
+```
+```{r}
+ggplot(data = X2000mvp) + geom_point(mapping = aes(x = HR, y = RBI, color = Name),size = 4)
+```
+
+
+```{r}
+ggplot(data = X2000mvp) + geom_col(mapping = aes(x = Name, y = `wRC+`, fill = Name))
+```
+
+
+```{r}
+ggplot(data = X2000mvp) + geom_point(mapping = aes(x = HR, y = RBI, color = Name, size = AVG))
+```
