@@ -17,7 +17,7 @@ library(readxl)
 dhdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/dhdata.xlsx")
 X1Bdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/1Bdata.xlsx")
 LFdata <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/LFdata.xlsx")
-X2000_mvp_data <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/X2000_mvp_data.xlsx")
+X2000_mvp_data <- read_excel("C:/Users/rd531058/Desktop/fall_2017/data_science/2000_mvp_data.xlsx")
 ```
 
 
@@ -124,7 +124,7 @@ model <- LFdata %>%  top_n(10, wt = desc(`Total Rank`) )%>% lm(`Total Rank` ~ OP
 summary(model)
 ```
 ```{r}
-ggplot(data = X2000mvp) + geom_point(mapping = aes(x = HR, y = RBI, color = Name),size = 4)
+ggplot(data = x2000mvp) + geom_point(mapping = aes(x = HR, y = RBI, color = Name),size = 4)
 ```
 
 
